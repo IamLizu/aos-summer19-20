@@ -46,22 +46,22 @@ for device in iter(monitor.poll, None):
                                     os.system('sudo umount {}'.format(m))
                     # if the script is instally starting, abandon all existing unused mount points
                     if len(mount_locs) == 0:
-                        os.system('sudo umount ~/smb-devices/*')
+                        os.system('sudo umount /home/ubuntu/smb-devices/*')
                     
                     # failsafe: unmount & check & delete
-                    print('Umount: ~/smb-devices/storage{}'.format(i))
-                    os.system('sudo umount ~/smb-devices/storage{}'.format(i))
-                    os.system('find ~/smb-devices/. -type d -empty -delete')
+                    print('Umount: /home/ubuntu/smb-devices/storage{}'.format(i))
+                    os.system('sudo umount /home/ubuntu/smb-devices/storage{}'.format(i))
+                    os.system('find /home/ubuntu/smb-devices/. -type d -empty -delete')
 
                     # create a mount point with storage{0,1,2,...,n}
-                    print('Create: ~/smb-devices/storage{}'.format(i))
-                    os.system('mkdir ~/smb-devices/storage{}'.format(i))
+                    print('Create: /home/ubuntu/smb-devices/storage{}'.format(i))
+                    os.system('mkdir /home/ubuntu/smb-devices/storage{}'.format(i))
 
-                    mount_locs.append('~/smb-devices/storage{}'.format(i)) # save created mountpoint to mount_locs list
-                    print('Added ~/smb-devices/storage{} to mounted locations.'.format(i))
+                    mount_locs.append('/home/ubuntu/smb-devices/storage{}'.format(i)) # save created mountpoint to mount_locs list
+                    print('Added /home/ubuntu/smb-devices/storage{} to mounted locations.'.format(i))
 
-                    os.system('sudo mount {} ~/smb-devices/storage{}'.format(stick, i)) #finally mount the partition
-                    print('Mounted {} on ~/smb-devices/storage{}'.format(stick, i))
+                    os.system('sudo mount {} /home/ubuntu/smb-devices/storage{}'.format(stick, i)) #finally mount the partition
+                    print('Mounted {} on /home/ubuntu/smb-devices/storage{}'.format(stick, i))
                     i = i + 1 # increase i to create storage1 after 0, 2 after 1,...n+1 after n.
                 
                 # if the partitions is already mounted, ignore remount
