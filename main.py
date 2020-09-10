@@ -33,12 +33,12 @@ for device in iter(monitor.poll, None):
                             # checking for not used mountpoints
                             check = "ls -l {} || echo 'Input/output error'".format(m)
 
-                            os.system(check + "> mount_loc_output.txt")
-                            if os.path.exists('mount_loc_output.txt'):
-                                dump = open('mount_loc_output.txt')
+                            os.system(check + "> /home/ubuntu/mount_loc_output.txt")
+                            if os.path.exists('/home/ubuntu/mount_loc_output.txt'):
+                                dump = open('/home/ubuntu/mount_loc_output.txt')
                                 error = dump.read()
                                 dump.close()
-                                os.remove('mount_loc_output.txt')
+                                os.remove('/home/ubuntu/mount_loc_output.txt')
 
                                 # if unused mountpoint found, unmount that
                                 if 'Input/output error' in error:
